@@ -153,6 +153,7 @@ public class ApplicationsResource {
                     .header(HEADER_CONTENT_TYPE, returnMediaType)
                     .build();
         } else {
+            // ResponseCache, 从缓存获取.
             response = Response.ok(responseCache.get(cacheKey))
                     .build();
         }
@@ -226,6 +227,7 @@ public class ApplicationsResource {
                 keyType, CurrentRequestVersion.get(), EurekaAccept.fromString(eurekaAccept), regions
         );
 
+        //获取注册表
         if (acceptEncoding != null
                 && acceptEncoding.contains(HEADER_GZIP_VALUE)) {
             return Response.ok(responseCache.getGZIP(cacheKey))

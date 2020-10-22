@@ -44,6 +44,8 @@ import static org.mockito.Mockito.when;
  * uncompressed).
  *
  * @author Tomasz Bak
+ *
+ * eureka注册中心启动, 然后模拟eureka客户端去发送请求到eureka注册中心, 来测试各种功能
  */
 public class EurekaClientServerRestIntegrationTest {
 
@@ -90,6 +92,9 @@ public class EurekaClientServerRestIntegrationTest {
                 serverCodecs,
                 eurekaServiceUrl
         );
+
+        // hang住
+        Thread.sleep(Long.MAX_VALUE);
     }
 
     @AfterClass
@@ -244,6 +249,18 @@ public class EurekaClientServerRestIntegrationTest {
         server.start();
 
         eurekaServiceUrl = "http://localhost:8080/v2";
+
+      /*  server = new Server(8080);
+
+        WebAppContext webAppCtx = new WebAppContext(new File("./eureka-server/src/main/webapp").getAbsolutePath(), "/");
+        webAppCtx.setDescriptor(new File("./eureka-server/src/main/webapp/WEB-INF/web.xml").getAbsolutePath());
+        webAppCtx.setResourceBase(new File("./eureka-server/src/main/resources").getAbsolutePath());
+        webAppCtx.setClassLoader(Thread.currentThread().getContextClassLoader());
+        server.setHandler(webAppCtx);
+        server.start();
+
+        eurekaServiceUrl = "http://localhost:8080/v2";*/
+
     }
 
     private static File findWar() {

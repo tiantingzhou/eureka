@@ -1,5 +1,6 @@
 apply plugin: 'war'
-apply plugin: 'jetty'
+
+apply plugin: "org.akhikhl.gretty"
 
 dependencies {
     compile project(':eureka-core')
@@ -26,8 +27,4 @@ task copyLibs(type: Copy) {
 
 war {
     from (project(':eureka-resources').file('build/resources/main'))
-}
-
-jettyRun.doFirst {
-    contextPath 'eureka'
 }

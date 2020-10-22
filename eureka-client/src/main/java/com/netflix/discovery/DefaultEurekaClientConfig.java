@@ -68,6 +68,7 @@ public class DefaultEurekaClientConfig implements EurekaClientConfig {
     public static final String DEFAULT_ZONE = "defaultZone";
 
     private final String namespace;
+    // 获取配置信息工厂类
     private final DynamicPropertyFactory configInstance;
     private final EurekaTransportConfig transportConfig;
 
@@ -79,7 +80,7 @@ public class DefaultEurekaClientConfig implements EurekaClientConfig {
         this.namespace = namespace.endsWith(".")
                 ? namespace
                 : namespace + ".";
-
+        //读取配置文件配置,封装进AbstractConfiguration.
         this.configInstance = Archaius1Utils.initConfig(CommonConstants.CONFIG_FILE_NAME);
         this.transportConfig = new DefaultEurekaTransportConfig(namespace, configInstance);
     }

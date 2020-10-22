@@ -33,7 +33,7 @@ import org.slf4j.LoggerFactory;
  * The configuration file is searched for in the classpath with the name
  * specified by the property <em>eureka.client.props</em> and with the suffix
  * <em>.properties</em>. If the property is not specified,
- * <em>eureka-client.properties</em> is assumed as the default.
+ * <em>eureka-client.properties</em> is c as the default.
  *
  * @author Karthik Ranganathan
  *

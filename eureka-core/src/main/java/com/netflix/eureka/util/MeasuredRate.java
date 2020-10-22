@@ -29,7 +29,9 @@ import org.slf4j.LoggerFactory;
  */
 public class MeasuredRate {
     private static final Logger logger = LoggerFactory.getLogger(MeasuredRate.class);
+    // 上一分钟的心跳数, 提供查询.
     private final AtomicLong lastBucket = new AtomicLong(0);
+    // 当前一分钟的心跳数, 提供自增.
     private final AtomicLong currentBucket = new AtomicLong(0);
 
     private final long sampleInterval;
@@ -48,6 +50,7 @@ public class MeasuredRate {
 
     public synchronized void start() {
         if (!isActive) {
+            // 每分钟将currentBucket清零, 将currentBucket赋值给lastBucket.
             timer.schedule(new TimerTask() {
 
                 @Override

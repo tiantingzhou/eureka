@@ -83,6 +83,7 @@ public abstract class AbstractJersey2EurekaHttpClient implements EurekaHttpClien
 
     @Override
     public EurekaHttpResponse<Void> register(InstanceInfo info) {
+        // 进行服务注册
         String urlPath = "apps/" + info.getAppName();
         Response response = null;
         try {
@@ -206,11 +207,13 @@ public abstract class AbstractJersey2EurekaHttpClient implements EurekaHttpClien
 
     @Override
     public EurekaHttpResponse<Applications> getApplications(String... regions) {
+        // 拉取注册表
         return getApplicationsInternal("apps/", regions);
     }
 
     @Override
     public EurekaHttpResponse<Applications> getDelta(String... regions) {
+        // 拉取增量注册表
         return getApplicationsInternal("apps/delta", regions);
     }
 
